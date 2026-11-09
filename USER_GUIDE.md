@@ -3,14 +3,14 @@
 ## 1. Quick Start & Installation
 
 1. Install **Definition of Done & Subtask Compliance Gate for Jira** (`com.evidencepair.jira.compliance.gate`) from the Atlassian Marketplace onto your Jira or Jira Service Management Cloud site.
-2. Navigate to **Project Settings → Apps → DoD Templates & Compliance Audit** (`jira-compliance-gate-admin`) to review or customize your space's mandatory Definition of Done checklist and child subtask enforcement rules.
-3. Attach the **Definition of Done & Subtask SHA-256 Validator** (`jira-compliance-dod-validator`) to your workflow's *Resolve* / *Done* / *Release* transitions under **Project Settings → Workflows**.
+2. Navigate to **Project Settings → Apps → Definition of Done & Subtask Compliance Gate for Jira** (`jira-compliance-gate-admin`) to review or customize your space's mandatory Definition of Done checklist and child subtask enforcement rules.
+3. Attach the **Definition of Done & Subtask Compliance Gate for Jira** workflow validator (`jira-compliance-dod-validator`) to your workflow's *Resolve* / *Done* / *Release* transitions under **Project Settings → Workflows**.
 
 ---
 
 ## 2. Configuring Space Definition of Done Templates (`jira:projectPage`)
 
-In **DoD Templates & Compliance Audit**, project administrators configure:
+In the **Definition of Done & Subtask Compliance Gate for Jira** project page, project administrators configure:
 - **Strict Workflow Validator Gate (`strictWorkflowBlocking`)**: Enforces hard transition blocking via `jira-compliance-dod-validator`.
 - **Block if Open Subtasks Exist (`blockIfOpenSubtasks`)**: Requires all child subtasks on an issue to be in the `done` status category before the parent issue can be sealed or resolved.
 - **Require Verification Evidence Notes (`requireEvidenceNotes`)**: Requires engineers to attach a PR link, CI run URL, or QA test reference on mandatory items.
@@ -26,7 +26,7 @@ All space rules are stored in native Jira Project Property `complianceGateTempla
 
 ## 3. Sealing & Attesting an Issue's Definition of Done (`jira:issuePanel`)
 
-1. Open any Jira issue and expand the **Definition of Done & Compliance Gate** panel (`jira-compliance-gate-panel`).
+1. Open any Jira issue and expand the **Definition of Done & Subtask Compliance Gate for Jira** panel (`jira-compliance-gate-panel`).
 2. Check off each mandatory Definition of Done control and enter verification evidence (e.g., PR number, Snyk/Semgrep scan run, Playwright E2E build).
 3. Ensure all child subtasks are completed (`0 OPEN SUBTASKS`).
 4. Click **Seal & Attest Definition of Done (SHA-256)**.
@@ -37,14 +37,15 @@ All space rules are stored in native Jira Project Property `complianceGateTempla
 
 ---
 
-## 4. Exporting SOC2 / ISO 27001 Compliance Audit CSV
+## 4. Exporting the Audit CSV for Your SOC 2 / ISO 27001 Evidence
 
-In **DoD Templates & Compliance Audit**, review the **Space Release & Compliance Audit Radar** table and copy or download the RFC-4180 escaped CSV containing issue keys, DoD completion counts, subtask states, attesting Account IDs, UTC timestamps, and 64-character SHA-256 release seals.
+In the **Definition of Done & Subtask Compliance Gate for Jira** project page, review the **Space Release & Compliance Audit Radar** table and copy or download the RFC-4180 escaped CSV containing issue keys, DoD completion counts, subtask states, attesting Account IDs, UTC timestamps, and 64-character SHA-256 release seals.
 
 ---
 
 ## 5. Support & Contact
 
 - **Vendor:** EvidencePair LLC
-- **Support & Security Email:** `support@titlecovenant.com`
-- **SLA:** 1 Business Day response for all customer inquiries.
+- **Support:** <https://evidencepair.com/support/> (`support@evidencepair.com`). We reply within one business day.
+- **Security reports:** `security@evidencepair.com`. We acknowledge every report within one business day.
+- **Privacy:** see the [privacy policy](./PRIVACY_POLICY.md), or email `hello@evidencepair.com`.

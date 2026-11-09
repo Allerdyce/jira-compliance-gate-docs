@@ -1,8 +1,12 @@
-# Privacy, Data Residency & Security Policy — Definition of Done & Subtask Compliance Gate for Jira
+# Privacy, Data Residency & Security Architecture — Definition of Done & Subtask Compliance Gate for Jira
 
-**Effective Date:** October 15, 2026  
+> The app's privacy policy is [PRIVACY_POLICY.md](./PRIVACY_POLICY.md), and its security documentation (data handling, encryption, vulnerability management and certifications) is [SECURITY.md](./SECURITY.md). This page is the architecture summary.
+
+**Updated:** 9 November 2026  
 **App Key:** `com.evidencepair.jira.compliance.gate`  
-**Vendor:** EvidencePair LLC (`support@titlecovenant.com`)
+**Vendor:** EvidencePair LLC  
+**Support:** <https://evidencepair.com/support/> (`support@evidencepair.com`)  
+**Security Contact:** `security@evidencepair.com`
 
 ---
 
@@ -21,30 +25,32 @@ The app does **not** use external databases, Forge SQL, or Forge KVS. All config
 - **Issue Attestation Property (`complianceGateState`)**:
   `/rest/api/3/issue/{issueKey}/properties/complianceGateState` (`<32 KB` enforced via `assertPropertyPayloadUnder32KB`)
 
-Because all data resides inside Jira Host Entity Properties, your compliance data automatically inherits your Atlassian Jira Cloud tenant's **Data Residency**, backup/restore lifecycle, encryption at rest (AES-256), and encryption in transit (TLS 1.2+/1.3).
+Because all data resides inside Jira entity properties, Atlassian stores it with the rest of your Jira site, in your site's data residency location. Encryption in transit and at rest is Atlassian's, as part of your site, as described in the [Atlassian Trust Center](https://www.atlassian.com/trust).
 
 ---
 
-## 3. Personal Data & GDPR Compliance
+## 3. Personal Data
 
 - **No Personal Data Stored Externally**: The app does not collect, export, or store personal data (names, email addresses, IP addresses, or payment information) outside your Jira instance.
-- **Pseudonymous Atlassian Account ID Only**: When a user seals a Definition of Done checklist, only their opaque Atlassian `accountId` (e.g., `712020:...`) and UTC timestamp are recorded inside the issue's `complianceGateState` property for cryptographic non-repudiation.
-- **Automatic Deletion**: Deleting a Jira issue or project immediately and permanently deletes its associated `complianceGateState` and `complianceGateTemplate` entity properties.
+- **Atlassian Account ID**: When a user ticks or unticks a Definition of Done checklist item, or seals the checklist, their opaque Atlassian `accountId` (e.g., `712020:...`) and a UTC timestamp are recorded inside the issue's `complianceGateState` property. Each save replaces the previous record, so it holds only the most recent person. On a sealed checklist, the account ID is part of the SHA-256 checksum.
+- **Evidence Notes**: The verification evidence typed into the issue panel is stored as entered in `complianceGateState`, and can contain personal data.
+- **Deletion**: Deleting a Jira issue deletes its `complianceGateState` property. The app deletes nothing itself and has no uninstall step. A Jira administrator can delete either property at any time through Jira's REST API.
+- **Account Closure**: The app does not take part in Atlassian's personal data reporting. A closed account's ID stays in any record that person last saved until the property or the issue is deleted.
 
 ---
 
-## 4. Least-Privilege Scopes
+## 4. Scopes
 
 | Scope | Justification |
 |---|---|
-| `read:jira-work` | Read issue summary, status, issue type, child subtasks, and project/issue compliance properties. |
+| `read:jira-work` | Read issues (the app uses the summary, status, issue type and child subtasks), the project's recent issues, and the project/issue compliance properties. |
 | `write:jira-work` | Persist per-issue Definition of Done checklist & SHA-256 attestation seal in `complianceGateState`. |
 | `manage:jira-project` | Persist space-level Definition of Done templates & subtask rules in `complianceGateTemplate`. |
-| `read:app-data:jira` | Read app-scoped Jira entity metadata. |
-| `write:app-data:jira` | Write app-scoped Jira entity metadata. |
+| `read:app-data:jira` | Declared but not used by this version. |
+| `write:app-data:jira` | Declared but not used by this version. |
 
 ---
 
 ## 5. Security Contact & Vulnerability Disclosure
 
-To report a security issue or request a SOC2 / ISO 27001 architecture review, contact **EvidencePair LLC Security** at `support@titlecovenant.com`. Critical security reports are acknowledged within **24 hours**.
+To report a security issue, email `security@evidencepair.com`. We acknowledge every report within one business day. EvidencePair holds no security certifications; see [SECURITY.md](./SECURITY.md).

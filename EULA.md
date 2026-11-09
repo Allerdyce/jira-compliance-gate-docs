@@ -1,7 +1,7 @@
 # End-User License Agreement (EULA) — Definition of Done & Subtask Compliance Gate for Jira
 
 **Effective Date:** October 15, 2026  
-**Licensor:** EvidencePair LLC (`support@titlecovenant.com`)  
+**Licensor:** EvidencePair LLC (<https://evidencepair.com/support/>)  
 **Product:** Definition of Done & Subtask Compliance Gate for Jira (`com.evidencepair.jira.compliance.gate`)
 
 ---
@@ -19,4 +19,4 @@ Customer shall not reverse engineer, decompile, sublicense, or circumvent the At
 THE SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. IN NO EVENT SHALL LICENSOR'S AGGREGATE LIABILITY EXCEED THE FEES PAID BY CUSTOMER FOR THE SOFTWARE IN THE TWELVE (12) MONTHS PRECEDING THE CLAIM.
 
 ## 5. Governing Law & Contact
-This Agreement is governed by the laws of the State of Delaware, USA. For legal or licensing inquiries, contact `support@titlecovenant.com`.
+This Agreement is governed by the laws of the State of Delaware, USA. For legal or licensing inquiries, contact `support@evidencepair.com`.
